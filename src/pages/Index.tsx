@@ -68,72 +68,80 @@ const Index = () => {
 
   if (currentView === "dashboard") {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
         <Header />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card className="shadow-card">
+            <Card className="shadow-elegant bg-gradient-to-br from-primary/10 to-primary/20 border-primary/20">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Total Reports</p>
+                    <p className="text-sm text-primary/80 font-medium">Total Reports</p>
                     <p className="text-3xl font-bold text-primary">247</p>
                   </div>
-                  <BarChart3 className="h-8 w-8 text-primary" />
+                  <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <BarChart3 className="h-6 w-6 text-primary" />
+                  </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="shadow-card">
+            <Card className="shadow-elegant bg-gradient-to-br from-success/10 to-success/20 border-success/20">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Resolved</p>
+                    <p className="text-sm text-success/80 font-medium">Resolved</p>
                     <p className="text-3xl font-bold text-success">89</p>
                   </div>
-                  <TrendingUp className="h-8 w-8 text-success" />
+                  <div className="h-12 w-12 rounded-full bg-success/20 flex items-center justify-center">
+                    <TrendingUp className="h-6 w-6 text-success" />
+                  </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="shadow-card">
+            <Card className="shadow-elegant bg-gradient-to-br from-info/10 to-info/20 border-info/20">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Under Investigation</p>
+                    <p className="text-sm text-info/80 font-medium">Under Investigation</p>
                     <p className="text-3xl font-bold text-info">42</p>
                   </div>
-                  <Users className="h-8 w-8 text-info" />
+                  <div className="h-12 w-12 rounded-full bg-info/20 flex items-center justify-center">
+                    <Users className="h-6 w-6 text-info" />
+                  </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="shadow-card">
+            <Card className="shadow-elegant bg-gradient-to-br from-warning/10 to-warning/20 border-warning/20">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Locations</p>
-                    <p className="text-3xl font-bold text-accent">156</p>
+                    <p className="text-sm text-warning/80 font-medium">Locations</p>
+                    <p className="text-3xl font-bold text-warning">156</p>
                   </div>
-                  <MapPin className="h-8 w-8 text-accent" />
+                  <div className="h-12 w-12 rounded-full bg-warning/20 flex items-center justify-center">
+                    <MapPin className="h-6 w-6 text-warning" />
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
           {/* Recent Reports */}
-          <Card className="shadow-card">
-            <CardHeader>
+          <Card className="shadow-elegant bg-gradient-to-br from-card to-card/50 border-primary/10">
+            <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5">
               <div className="flex items-center justify-between">
-                <CardTitle>Recent Reports</CardTitle>
-                <Button variant="hero" size="sm">
+                <CardTitle className="text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Recent Reports</CardTitle>
+                <Button variant="hero" size="sm" className="shadow-glow">
                   New Report
                 </Button>
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-6">
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {mockReports.map((report) => (
                   <ReportCard
