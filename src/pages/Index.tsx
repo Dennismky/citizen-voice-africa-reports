@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import StatusBadge from "@/components/StatusBadge";
 import AuthForm from "@/components/AuthForm";
 import ReportCard from "@/components/ReportCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, Users, MapPin, TrendingUp } from "lucide-react";
+import { BarChart3, Users, MapPin, TrendingUp, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -68,92 +69,137 @@ const Index = () => {
 
   if (currentView === "dashboard") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+      <div className="min-h-screen bg-gradient-hero">
+        <div className="absolute inset-0 bg-black/10"></div>
         <Header />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card className="shadow-elegant bg-gradient-to-br from-primary/10 to-primary/20 border-primary/20">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-primary/80 font-medium">Total Reports</p>
-                    <p className="text-3xl font-bold text-primary">247</p>
-                  </div>
-                  <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
-                    <BarChart3 className="h-6 w-6 text-primary" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="shadow-elegant bg-gradient-to-br from-success/10 to-success/20 border-success/20">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-success/80 font-medium">Resolved</p>
-                    <p className="text-3xl font-bold text-success">89</p>
-                  </div>
-                  <div className="h-12 w-12 rounded-full bg-success/20 flex items-center justify-center">
-                    <TrendingUp className="h-6 w-6 text-success" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="shadow-elegant bg-gradient-to-br from-info/10 to-info/20 border-info/20">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-info/80 font-medium">Under Investigation</p>
-                    <p className="text-3xl font-bold text-info">42</p>
-                  </div>
-                  <div className="h-12 w-12 rounded-full bg-info/20 flex items-center justify-center">
-                    <Users className="h-6 w-6 text-info" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="shadow-elegant bg-gradient-to-br from-warning/10 to-warning/20 border-warning/20">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-warning/80 font-medium">Locations</p>
-                    <p className="text-3xl font-bold text-warning">156</p>
-                  </div>
-                  <div className="h-12 w-12 rounded-full bg-warning/20 flex items-center justify-center">
-                    <MapPin className="h-6 w-6 text-warning" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Welcome Section */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+              Your <span className="text-secondary">Dashboard</span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+              Track your reports, monitor progress, and continue making a difference in your community
+            </p>
           </div>
 
-          {/* Recent Reports */}
-          <Card className="shadow-elegant bg-gradient-to-br from-card to-card/50 border-primary/10">
-            <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Recent Reports</CardTitle>
-                <Button variant="hero" size="sm" className="shadow-glow">
-                  New Report
-                </Button>
+          {/* Quick Actions */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button variant="secondary" size="xl" className="group">
+              <AlertTriangle className="h-5 w-5 mr-2 group-hover:animate-pulse" />
+              New Red Flag Report
+            </Button>
+            <Button variant="outline" size="xl" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary">
+              <MapPin className="h-5 w-5 mr-2" />
+              Request Intervention
+            </Button>
+          </div>
+
+          {/* Stats Overview */}
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white text-center">
+              <BarChart3 className="h-12 w-12 text-secondary mb-4 mx-auto" />
+              <div className="text-3xl font-bold text-white mb-2">247</div>
+              <div className="text-white/80">Total Reports</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white text-center">
+              <TrendingUp className="h-12 w-12 text-secondary mb-4 mx-auto" />
+              <div className="text-3xl font-bold text-white mb-2">89</div>
+              <div className="text-white/80">Resolved Cases</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white text-center">
+              <Users className="h-12 w-12 text-secondary mb-4 mx-auto" />
+              <div className="text-3xl font-bold text-white mb-2">42</div>
+              <div className="text-white/80">Under Investigation</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white text-center">
+              <MapPin className="h-12 w-12 text-secondary mb-4 mx-auto" />
+              <div className="text-3xl font-bold text-white mb-2">156</div>
+              <div className="text-white/80">Active Locations</div>
+            </div>
+          </div>
+
+          {/* Recent Activity */}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* My Reports */}
+            <div className="lg:col-span-2">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-white">My Recent Reports</h2>
+                  <Button variant="secondary" size="sm">
+                    View All
+                  </Button>
+                </div>
+                
+                <div className="space-y-4">
+                  {mockReports.map((report) => (
+                    <div key={report.id} className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            {report.type === "red-flag" ? (
+                              <AlertTriangle className="h-4 w-4 text-destructive" />
+                            ) : (
+                              <MapPin className="h-4 w-4 text-secondary" />
+                            )}
+                            <h3 className="text-white font-semibold">{report.title}</h3>
+                          </div>
+                          <p className="text-white/70 text-sm mb-2 line-clamp-2">{report.description}</p>
+                          <div className="flex items-center gap-4 text-xs text-white/60">
+                            <span>{report.location}</span>
+                            <span>{report.createdAt}</span>
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          <StatusBadge status={report.status} size="sm" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {mockReports.map((report) => (
-                  <ReportCard
-                    key={report.id}
-                    {...report}
-                    onEdit={() => toast({ title: "Edit functionality", description: "Coming soon!" })}
-                    onDelete={() => toast({ title: "Delete functionality", description: "Coming soon!" })}
-                  />
-                ))}
+            </div>
+
+            {/* Quick Insights */}
+            <div className="space-y-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-white mb-4">Impact Summary</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-white/80">Reports Submitted</span>
+                    <span className="text-white font-bold">12</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-white/80">Cases Resolved</span>
+                    <span className="text-secondary font-bold">8</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-white/80">Communities Helped</span>
+                    <span className="text-white font-bold">5</span>
+                  </div>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-white mb-4">Recent Updates</h3>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="text-white/90">Your report "Pothole on Main Street" was updated</div>
+                    <div className="text-white/60 text-xs">2 hours ago</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="text-white/90">New intervention request approved</div>
+                    <div className="text-white/60 text-xs">1 day ago</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="text-white/90">Case marked as resolved</div>
+                    <div className="text-white/60 text-xs">3 days ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
